@@ -1,0 +1,9 @@
+{
+   "Sanity":{
+   		"testCases.CompareWeather.java":"Y",
+   		"CompareWeather5.java":"N",
+   		"CompareWeather4.java":"N",
+   		"CompareWeather3.java":"N",
+   		"CompareWeather2.java":"N"
+   }
+}

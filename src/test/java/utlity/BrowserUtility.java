@@ -16,7 +16,6 @@ public class BrowserUtility {
 		WebDriver driver = null;
 		Logger log = Logger.getLogger("manualLogger");	
 		try {	
-		String path;
 		System.out.println(browser);
 		String drivpath= System.getProperty("user.dir")+"\\src\\test\\resources\\";
 		//accepts string value in brsr="firefox, chrome, ie";

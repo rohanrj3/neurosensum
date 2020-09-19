@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="neurosensum_suite" verbose="1">
+  <test name="neurosensum_test">
+    <classes>
+      <class name="driver.Driver" />
+    </classes>
+  </test>
+</suite>
