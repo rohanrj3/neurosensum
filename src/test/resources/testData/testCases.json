@@ -1,9 +1,9 @@
 {
    "Sanity":{
-   		"testCases.CompareWeather.java":"Y",
-   		"CompareWeather5.java":"N",
-   		"CompareWeather4.java":"N",
-   		"CompareWeather3.java":"N",
-   		"CompareWeather2.java":"N"
+   		"TC_001":{"Execute":"Y","TestCase_Name":"testCases.CompareWeather"},
+   		"TC_002":{"Execute":"N","TestCase_Name":"testCases.CompareWeather.java"},
+   		"TC_003":{"Execute":"N","TestCase_Name":"testCases.CompareWeather.java"},
+   		"TC_004":{"Execute":"N","TestCase_Name":"testCases.CompareWeather.java"},
+   		"TC_005":{"Execute":"N","TestCase_Name":"testCases.CompareWeather.java"}
    }
 }

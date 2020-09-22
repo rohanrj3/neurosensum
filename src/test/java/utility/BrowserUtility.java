@@ -1,4 +1,4 @@
-package utlity;
+package utility;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

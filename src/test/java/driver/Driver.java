@@ -5,6 +5,7 @@ import java.lang.reflect.Constructor;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
@@ -63,20 +64,18 @@ public class Driver {
 	 */
 
 	@Factory(dataProvider = "dpMasterPlan")
-	public Object[] createInstances(String testCaseName, String Execute){
-		log.info("TestCaseName :" + testCaseName);
-		log.info("Execute :" + Execute);
+	public Object[] createInstances(String testCaseID, String testCaseName){
+		System.out.println("TestCaseName :" + testCaseName);
+		System.out.println("TestCaseID :" + testCaseID);
 		Object[] tst = null;
 		try {
 			log.info("================================================================");
 			log.info("Test Execution starts for : " + testCaseName);
 			log.info("================================================================");
-			if(Execute.toUpperCase()=="Y") {
-				Class<?> dynclass = Class.forName(testCaseName);
-				Constructor<?> contr = dynclass.getDeclaredConstructor(String.class,String.class);
-				tst = new Object[] {contr.newInstance(browser,testCaseName)};	
-			}
-			
+			Class<?> dynclass = Class.forName(testCaseName);
+			Constructor<?> contr = dynclass.getDeclaredConstructor(String.class,String.class);
+			tst = new Object[] {contr.newInstance(browser,testCaseID)};	
+
 		}catch(Exception e) {
 			log.error("Exception Occured: " + e);
 			e.printStackTrace();
@@ -92,16 +91,22 @@ public class Driver {
 	@DataProvider
 	public String[][] dpMasterPlan() throws Exception {
 		String[][] testCases=null;
+		HashMap<String, String> mapTcs= new HashMap<String, String>();
 		try {
 			JSONParser parser = new JSONParser();
-			Object obj = parser.parse(new FileReader(System.getProperty("testDataPath")+"testCases.json"));
-			JSONObject testCasesObj = (JSONObject) obj;
-			JSONObject testCasesArr =  (JSONObject) testCasesObj.get("Sanity");
-			testCases= new String[testCasesArr.size()][2];
-			int i=0;
+			JSONObject obj = (JSONObject) parser.parse(new FileReader(System.getProperty("testDataPath")+"testCases.json"));
+			JSONObject testCasesArr = (JSONObject) obj.get("Sanity");
 			for (Object key : testCasesArr.keySet()) {
-				testCases[i][0]=(String) key;
-				testCases[i++][1]=(String) testCasesArr.get(key);
+				JSONObject tcDetails = (JSONObject) testCasesArr.get(key);
+				if(((String) tcDetails.get("Execute")).toUpperCase().matches("Y")) {
+					mapTcs.put((String) key, (String) tcDetails.get("TestCase_Name"));
+				}
+			}
+			testCases = new String[mapTcs.size()][2];
+			int i=0;
+			for(String mapKey : mapTcs.keySet()) {
+				testCases[i][0]=mapKey;
+				testCases[i++][1]=mapTcs.get(mapKey);
 			}
 		}
 		catch(Exception e) {

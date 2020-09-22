@@ -1,6 +1,10 @@
 {
   "browser":"Denu",
-  "url":"https://weather.com/"
-  "cityName":"Delhi"
-  "apiCall":"api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}"
+  "url":"https://weather.com/",
+  "apiCall":"api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}",
+  "TC_001":{"City":"Delhi"},
+  "TC_002":{"City":"Mumbai","State":"Maharashtra"},
+  "TC_003":{"City":"Hyderabad"},
+  "TC_003":{"City":"Patna","State":"Bihar"},
+  "TC_003":{"City":"Chennai"}
 }
